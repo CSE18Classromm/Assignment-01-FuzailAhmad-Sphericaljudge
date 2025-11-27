@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creative Resume - Split Glass Layout</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,500,400|Roboto:400,500" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --accent: #16a085;
+      --accent2: #f8c146;
+      --bg: #f3f7fa;
+      --glass: rgba(255,255,255,0.7);
+      --glass-blur: blur(8px);
+      --soft-shadow: 0 6px 38px 0 rgba(41,54,72,0.13);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8c14633 0%, #16a08566 100%);
+      min-height: 100vh;
+      font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+      color: #1e3333;
+    }
+    .main-glass {
+      display: flex;
+      max-width: 1250px;
+      margin: 48px auto 28px auto;
+      border-radius: 32px 12px 28px 12px;
+      overflow: hidden;
+      background: var(--glass);
+      box-shadow: var(--soft-shadow);
+      position: relative;
+      backdrop-filter: var(--glass-blur);
+      border: 2.7px solid #16a08522;
+    }
+    .left-col {
+      background: linear-gradient(130deg, #16a08588 20%, #f8c146cc 100%);
+      min-width: 330px;
+      max-width: 370px;
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      border-right:4px solid #16a08570;
+    }
+    .avatar-box {
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 2px 20px #16a08584;
+      margin-bottom: 26px;
+      width: 120px;
+      height: 160px;
+      position: relative;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .avatar-box img {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 28px;
+      margin:0;
+      border: 2.5px solid #f8c14688;
+    }
+    .left-col h1 {
+      margin: 0 0 5px 0;
+      font-size: 2.1em;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .left-col h2 {
+      margin: 0 0 18px 0;
+      font-size: 1.05em;
+      color: #1e3333;
+      background: #f8c146aa;
+      padding: 6px 18px;
+      border-radius: 18px;
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      text-shadow: 0 1px 0 #f8c14666;
+      letter-spacing: .9px;
+    }
+    .profile-desc {
+      font-size: 1.09em;
+      margin-bottom: 32px;
+      padding: 12px 7px;
+      background: rgba(255,255,255,0.17);
+      border-radius: 13px;
+      color: #e8fffb;
+      word-break:break-word;
+    }
+    .flat-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 22px 0 13px 0;
+    }
+    .flat-list li {
+      padding: 7px 0 7px 0;
+      border-bottom: 1px solid #1de9b631;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .flat-list li:last-child {
+      border-bottom: none;
+    }
+    /* icons */
+    .flat-list svg {
+      flex-shrink:0;
+      opacity:.7;
+    }
+    /* Skill circles */
+    .circle-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px 15px;
+      margin-top: 19px;
+      justify-content: center;
+    }
+    .skill-circle {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      background: linear-gradient(115deg, #fff6e6 20%, #f8c146 70%);
+      border-radius: 50%;
+      box-shadow:0 3px 10px #16a08527;
+      font-size: 1.04em;
+      color: #16a085;
+      font-family: 'Montserrat',sans-serif;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      z-index:2;
+    }
+    .skill-circle span {
+      font-size: .8em;
+      color: #1e3333;
+      font-weight: 500;
+    }
+    /* Right Column */
+    .right-col {
+      flex: 1;
+      padding: 54px 60px 40px 44px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: transparent;
+    }
+    .key-section {
+      margin-bottom: 38px;
+      position: relative;
+      background: #ffffff4b;
+      border-radius: 20px;
+      box-shadow: 0 2px 14px #16a08513;
+      padding: 18px 33px 17px 22px;
+      border-left: 5px solid var(--accent2);
+    }
+    .key-section h3 {
+      color: var(--accent2);
+      font-family: 'Montserrat',sans-serif;
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      margin: 2px 0 12px 0;
+      text-shadow: 0 1px 0 #f8c1464d;
+    }
+    /* Timeline styling */
+    .timeline {
+      border-left: 3px solid #16a085;
+      margin-left: 14px;
+      padding-left: 23px;
+    }
+    .timeline-item {
+      margin-bottom: 16px;
+      position: relative;
+      padding-left: 12px;
+    }
+    .timeline-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: -33px;
+      top: 6px;
+      border-radius: 50%;
+      background: #16a085;
+      border: 3px solid #f8c146;
+      box-shadow: 0 2px 8px #16a08538;
+    }
+    .timeline-content .degree {
+      font-weight: 700;
+      color: #16a085;
+    }
+    .timeline-content .year {
+      font-style: italic;
+      color: #908141;
+    }
+    /* Project grid cards */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top:8px;
+    }
+    .proj-card {
+      border-radius: 17px;
+      background: linear-gradient(100deg, #f8c14628 0%, #e0f7fa 100%);
+      box-shadow: 0 4px 18px #16a08527;
+      padding: 14px 15px 12px 15px;
+      border-left: 6px solid #16a085;
+      font-family: 'Montserrat',sans-serif;
+      transition: box-shadow .23s, border .2s;
+    }
+    .proj-card:hover {
+      box-shadow: 0 8px 32px #16a08541;
+      border-left: 7.5px solid var(--accent2);
+    }
+    .proj-card b {
+      color: #16a085;
+      font-size: 1.12em;
+    }
+    .proj-type {
+      font-size: .94em;
+      background: #f8c146cc;
+      color: #fff;
+      border-radius: 6px;
+      padding:2px 10px;
+      margin-left:8px;
+      font-weight: 500;
+      display:inline-block;
+      letter-spacing:.4px;
+    }
+    /* Certifications row */
+    .certs-row {
+      margin-top:10px;
+      display:flex;flex-wrap:wrap;gap:13px;
+    }
+    .cert-badge {
+      background: linear-gradient(90deg,#fffde7,#e0f7fa 60%);
+      color: #16a085;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 7px 16px;
+      font-size: 1.02em;
+      border: 1.2px solid #f8c146;
+      box-shadow: 0 1px 6px #fffde789;
+      margin-bottom:2px;
+    }
+    /* Activities & languages */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap:9px;
+      margin:10px 0 0 0;
+    }
+    .chip {
+      background: #e0f7fa;
+      color: #16a085;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 7px 15px;
+      font-size: 1.01em;
+      border: 1.2px solid #16a08560;
+      transition: background .2s;
+    }
+    .chip:hover {background:#16a085;color:#fff;}
+    .footer {
+      text-align: center;
+      color: #556655;
+      font-size: 1.04em;
+      padding: 20px 0 0 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Responsive Design */
+    @media(max-width:1100px) {
+      .main-glass { flex-direction: column; }
+      .left-col {max-width:none;width:100%; border-right:none; border-bottom:4px solid #16a08570;}
+      .right-col{padding:34px 8vw;}
+    }
+    @media(max-width:700px){
+      .main-glass{border-radius:22px;}
+      .right-col{padding:20px 4vw;}
+      .key-section{padding:10px 9vw 11px 4vw;}
+      .proj-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:500px){
+      .avatar-box{height:110px;width:90px;}
+      .avatar-box img{height:110px;width:90px;}
+      .left-col{padding:18px 5vw;}
+      .profile-desc{font-size:.98em;}
+    }
+  </style>
+</head>
+<body>
+<div class="main-glass">
+
+  <!-- LEFT COLUMN (GLASS SIDEBAR) -->
+  <div class="left-col">
+    <div class="avatar-box">
+      <img src="WhatsApp Image 2025-11-14 at 00.54.17_7afdf5fc.jpg" alt="Your Photo"/>
+    </div>
+    <h1>Your Name</h1>
+    <h2>Electronics • Robotics • AI</h2>
+    <div class="profile-desc">
+      Student engineer passionate about emerging tech, hands-on coding & creative hardware.<br>
+      <b>Loves:</b> Solving real-world problems, hackathons, sharing knowledge.
+    </div>
+    <ul class="flat-list">
+      <li>
+        <!-- location icon -->
+        <svg width="21" height="21" viewBox="0 0 21 21"><circle fill="#fff" cx="10.5" cy="10.5" r="10"/><path d="M10.5 4.5a4 4 0 0 1 4 4c0 2.25-4 7.5-4 7.5s-4-5.25-4-7.5a4 4 0 0 1 4-4zm0 2.2A1.8 1.8 0 0 0 8.7 8.5a1.8 1.8 0 1 0 3.6 0A1.8 1.8 0 0 0 10.5 6.7z" fill="#16a085"/></svg>
+        Delhi-NCR, India
+      </li>
+      <li>
+        <!-- email icon -->
+        <svg width="20" height="20" viewBox="0 0 20 20"><circle fill="#fff" cx="10" cy="10" r="10"/><path d="M4 6.8l6 4 6-4m-12 0v7.4a1.8 1.8 0 0 0 1.8 1.8h8.4A1.8 1.8 0 0 0 16 14.2V6.8" stroke="#16a085" stroke-width="1.2" fill="none"/></svg>
+        your.email@example.com
+      </li>
+      <li>
+        <!-- phone icon -->
+        <svg width="20" height="20" viewBox="0 0 20 20"><circle fill="#fff" cx="10" cy="10" r="10"/><path d="M6.2 7.3c.6 2.2 2.5 4 4.7 4.7l1.1-1.1a.7.7 0 0 1 .7-.2c.8.3 1.7.5 2.7.5a.7.7 0 0 1 .7.7v2.1a.7.7 0 0 1-.7.7C9.8 15 5.3 10.5 5.3 5.7a.7.7 0 0 1 .7-.7h2.1a.7.7 0 0 1 .7.7c0 1 .2 1.9.5 2.7a.7.7 0 0 1-.2.7L6.2 7.3z" fill="#16a085"/></svg>
+        +91-XXXXXXXXXX
+      </li>
+      <li>
+        <!-- link icon -->
+        <svg width="20" height="20" viewBox="0 0 20 20"><circle fill="#fff" cx="10" cy="10" r="10"/><path d="M7.5 10a2.5 2.5 0 0 1 2.5-2.5h2A2.5 2.5 0 1 1 15 10.5v3A2.5 2.5 0 1 1 12.5 16h-2A2.5 2.5 0 1 1 5 12.5v-3A2.5 2.5 0 0 1 7.5 7h2" stroke="#16a085" stroke-width="1.2" fill="none"/></svg>
+        github.com/yourusername
+      </li>
+    </ul>
+    <div style="margin-top:10px"><b>Core Skills</b></div>
+    <div class="circle-skills">
+      <div class="skill-circle">C++ <span>Expert</span></div>
+      <div class="skill-circle">Python <span>Pro</span></div>
+      <div class="skill-circle">Arduino <span>Pro</span></div>
+      <div class="skill-circle">Robotics <span>Advanced</span></div>
+      <div class="skill-circle">IoT <span>Pro</span></div>
+      <div class="skill-circle">Java <span>Good</span></div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN - GLASS MAIN -->
+  <div class="right-col">
+
+    <!-- EDUCATION -->
+    <div class="key-section">
+      <h3>Education</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="degree">B.Tech Electronics Engineering</span> <span class="year">2023–2027</span><br>
+            XYZ Institute of Technology
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="degree">Higher Secondary (Science PCM)</span> <span class="year">2021–2023</span><br>
+            ABC Senior School
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="key-section">
+      <h3>Projects</h3>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <b>Smart Waste Management System</b>
+          <span class="proj-type">IoT</span>
+          <div>
+            Built IoT-powered bins for real-time waste sorting and reporting. Featured sensors, NodeMCU, Python dashboards.
+          </div>
+        </div>
+        <div class="proj-card">
+          <b>Line Follower Robot</b>
+          <span class="proj-type">Robotics</span>
+          <div>
+            Designed and programmed an autonomous robot using Arduino and IR sensors for navigation on paths.
+          </div>
+        </div>
+        <div class="proj-card">
+          <b>Quantum Cryptography Demo</b>
+          <span class="proj-type">AI / Python</span>
+          <div>
+            Simulated quantum key distribution protocols in Python and visualized secure transmission.
+          </div>
+        </div>
+        <div class="proj-card">
+          <b>IoT-driven Air Quality Monitor</b>
+          <span class="proj-type">IoT</span>
+          <div>
+            Developed live air quality measurement system sending sensor data to web apps.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="key-section">
+      <h3>Certifications & Workshops</h3>
+      <div class="certs-row">
+        <span class="cert-badge">AI & Sensors Workshop (2025)</span>
+        <span class="cert-badge">Arduino Robotics Bootcamp (2024)</span>
+        <span class="cert-badge">Quantum Computing Seminar (2024)</span>
+      </div>
+    </div>
+
+    <!-- ACTIVITIES -->
+    <div class="key-section">
+      <h3>Extracurricular & Languages</h3>
+      <div><b>Activities:</b>
+        <div class="chips-row" style="margin-top:5px">
+          <span class="chip">YouTube Tutorials</span>
+          <span class="chip">Hackathons</span>
+          <span class="chip">Tech Blogging</span>
+          <span class="chip">Coding Society</span>
+          <span class="chip">Open-source</span>
+        </div>
+      </div>
+      <div style="margin-top:12px;"><b>Languages:</b>
+        <div class="chips-row">
+          <span class="chip">English (Fluent)</span>
+          <span class="chip">Hindi (Native)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Your Name | Updated Nov 14, 2025 — Designed with &nbsp;<span style="color:#16a085;">&#10084;</span>&nbsp;and CSS Glass!
+    </div>
+  </div>
+</div>
+</body>
+</html>

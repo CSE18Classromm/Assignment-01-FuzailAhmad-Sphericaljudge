@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultra Creative Resume</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Roboto:400,500" rel="stylesheet">
+  <style>
+    :root {
+      --main-gradient: linear-gradient(112deg, #3f51b5 0%, #1769aa 90%);
+      --accent: #fbc02d;
+      --overlay-bg: #f7faee;
+      --shadow-deep: 0 10px 40px rgba(41,54,72,0.16), 0 1.5px 16px rgba(41,54,72,0.08);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #e3f0fc 0%, #f9f6f2 100%);
+      min-height: 100vh;
+      font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+      line-height: 1.7;
+      color: #253056;
+    }
+    .resume-wrapper {
+      max-width: 1150px;
+      margin: 50px auto 40px auto;
+      background: var(--overlay-bg);
+      box-shadow: var(--shadow-deep);
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+    }
+    .sidebar {
+      background: var(--main-gradient);
+      color: #fff;
+      width: 342px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 55px 18px 38px 18px;
+      z-index: 2;
+      box-shadow: 0 0 80px 0 rgba(41,54,72,0.11) inset;
+    }
+    .sidebar .photo-container {
+      width: 142px;
+      height: 142px;
+      border-radius: 50%;
+      margin-bottom: 21px;
+      box-shadow: 0 4px 26px #16296374;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .sidebar img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(10%) brightness(1.08);
+      transition: filter 0.4s;
+    }
+    .sidebar img:hover {
+      filter: none;
+      transform: scale(1.05);
+    }
+    .sidebar .name {
+      font-size: 2.25em;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+      margin-bottom: 7px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .sidebar .tagline {
+      font-size: 1.17em;
+      font-weight: 400;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .sidebar .side-section {
+      margin-bottom: 22px;
+      width: 100%;
+    }
+    .sidebar h4 {
+      text-transform: uppercase;
+      letter-spacing: 1.33px;
+      font-size: 1.12em;
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      margin: 18px 0 10px 0;
+      font-weight: 700;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1em;
+    }
+    .sidebar ul li {
+      padding: 7px 0;
+      border-bottom: 1px dashed #ffffff34;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar ul li:last-child {
+      border-bottom: none;
+    }
+    .sidebar .side-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .badge {
+      background: linear-gradient(90deg,#ffecb3,#b2dfdb 90%);
+      color: #2a3568;
+      font-size: .99em;
+      font-weight: 500;
+      border-radius: 12px;
+      padding: 5px 14px;
+      box-shadow: 0 0 7px #ffffff72;
+      border: 1px solid var(--accent);
+      margin: 4px 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 50px 48px 40px 30px;
+      background: var(--overlay-bg);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1;
+      position: relative;
+    }
+    .main-content h2 {
+      font-size: 2em;
+      letter-spacing: 1.5px;
+      color: #253056;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0 0 10px 0;
+    }
+    .main-content .profile {
+      font-size: 1.15em;
+      margin-bottom:35px;
+      background: #f6e7ff87;
+      padding: 18px 16px 10px 16px;
+      border-left: 5px solid var(--accent);
+      box-shadow: 0 0 13px #3f51b523;
+      border-radius: 10px;
+    }
+    /* Section styling */
+    .section {
+      margin-bottom: 38px;
+      position: relative;
+    }
+    .section h3 {
+      font-size: 1.15em;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      margin-bottom: 14px;
+      border-bottom: 2px solid #faeac7;
+      padding-bottom: 2px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Education timeline */
+    .timeline {
+      margin-left: 10px;
+      border-left: 4px solid #1769aa;
+      padding-left: 18px;
+      position: relative;
+    }
+    .timeline-item {
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 6px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -24px;
+      top: 8px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #1769aa;
+      box-shadow: 0 1px 8px #1769aa37;
+    }
+    .timeline-content {
+      margin-left: 0px;
+      background: #ffecb344;
+      border-radius: 10px;
+      padding: 13px 14px;
+      box-shadow: 0 0 8px #fffde765;
+    }
+    .timeline-content .degree {
+      font-weight: 700;
+      color: #1769aa;
+    }
+    .timeline-content .year {
+      font-style: italic;
+      color: #6d75a3;
+    }
+    /* Skill Chips & Progress Bars */
+    .skills-wrapper {
+      margin: 8px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px 16px;
+    }
+    .skill-chip {
+      background: linear-gradient(90deg, #e3f2fd, #f9a82567);
+      color: #1769aa;
+      border: 1.5px solid #fbc02d9a;
+      font-weight: 600;
+      border-radius: 18px;
+      padding: 8px 22px;
+      font-size: 1.04em;
+      box-shadow: 0 1px 7px #e3f2fd60;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .skill-level {
+      margin-left: 10px;
+      background: #fbc02d33;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 10px;
+      width: 60px;
+      position: relative;
+    }
+    .skill-level span {
+      display: block;
+      height: 10px;
+      border-radius: 8px;
+      background: #1769aa;
+      transition: width 0.6s;
+    }
+    /* Project cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      margin-top: 5px;
+    }
+    .project-card {
+      background: linear-gradient(120deg, #e3f0fc 0%, #fffbe7 90%);
+      border-radius: 14px;
+      box-shadow: 0 1px 7px #fbc02d50;
+      padding: 15px 20px 15px 16px;
+      font-size: 1.08em;
+      border-left: 5px solid #1769aa;
+      position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 4px 28px #1769aa34;
+      transform: translateY(-3px) scale(1.03);
+      border-left: 7px solid var(--accent);
+    }
+    .project-card b {
+      color: #1769aa;
+      font-size: 1.09em;
+    }
+    .project-card .project-type {
+      font-size: .93em;
+      background: #1769aa44;
+      color: #1565c0;
+      border-radius: 7px;
+      padding: 3px 9px;
+      margin-left: 9px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      display: inline-block;
+    }
+    /* Certifications Badges */
+    .certs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .certificate {
+      background: linear-gradient(90deg,#fffde7,#e0f7fa 60%);
+      color: #1769aa;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 8px 18px;
+      border: 1.5px solid #fbc02d;
+      font-size: 1.06em;
+      box-shadow: 0 1px 7px #fffde770;
+      margin-bottom: 3px;
+    }
+    /* Interests & Activities */
+    .activities-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding:0;
+      margin:0;
+      list-style:none;
+    }
+    .activity {
+      background: #e3f2fdcc;
+      color: #1769aa;
+      font-weight: 500;
+      border-radius: 11px;
+      padding: 7px 18px;
+      font-size: 1.05em;
+      border: 1.5px solid #b2dfdb;
+      box-shadow: 0 1px 7px #b2dfdb44;
+      margin-bottom: 2px;
+      transition: background .34s;
+    }
+    .activity:hover {
+      background: #1565c0;
+      color: #fff;
+      border-color: #fbc02d;
+    }
+    /* Footer */
+    .footer {
+      width: 100%;
+      text-align: center;
+      color: #777;
+      font-size: 1.02em;
+      padding-top: 16px;
+      margin-top: 17px;
+      letter-spacing: 1px;
+      border-top: 1.5px dotted #dfecfb;
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Responsive design */
+    @media (max-width: 960px) {
+      .resume-wrapper {
+        flex-direction: column;
+        max-width: 99vw;
+      }
+      .sidebar {
+        width: 100%;
+        min-height: 210px;
+        padding: 34px 12px 22px 12px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .sidebar .side-section {
+        margin-bottom: 0;
+        margin-left: 22px;
+      }
+      .sidebar .name {font-size:2em;}
+      .main-content {padding:38px 10vw 30px 8vw;}
+      .project-card {padding:10px;}
+    }
+    @media (max-width:600px) {
+      .sidebar, .main-content {padding:17px 4vw;}
+      .sidebar .name {font-size:1.05em;}
+      .main-content h2 {font-size:1.12em;}
+      .projects-grid {grid-template-columns:1fr;}
+    }
+    /* Accent Animation (optional, demo) */
+    .sidebar .photo-container {
+      animation: bounceIn .88s cubic-bezier(.19,.66,.88,.58);
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(.7); opacity:.35;}
+      60% { transform: scale(1.15);}
+      100% { transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+<div class="resume-wrapper">
+
+  <!-- SIDEBAR - vertical panel -->
+  <aside class="sidebar">
+    <div class="photo-container">
+      <img src="https://placehold.co/130x130" alt="Your Photo" />
+    </div>
+    <div>
+      <div class="name">Your Name</div>
+      <div class="tagline">Engineering Student<br>Electronics & AI Enthusiast</div>
+      <div class="side-section">
+        <h4>Contact</h4>
+        <ul>
+          <li>Delhi-NCR, India</li>
+          <li>✉️ your.email@example.com</li>
+          <li>📱 +91-XXXXXXXXXX</li>
+          <li>🔗 LinkedIn / GitHub</li>
+        </ul>
+      </div>
+      <div class="side-section">
+        <h4>Languages</h4>
+        <div class="side-badges">
+          <span class="badge">English (Fluent)</span>
+          <span class="badge">Hindi (Native)</span>
+        </div>
+      </div>
+      <div class="side-section">
+        <h4>Interests</h4>
+        <div class="side-badges">
+          <span class="badge">Robotics</span>
+          <span class="badge">IoT & Drones</span>
+          <span class="badge">Quantum Computing</span>
+          <span class="badge">Circuit Design</span>
+          <span class="badge">Technical Blogging</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN-CONTENT -->
+  <section class="main-content">
+    <h2>About Me</h2>
+    <div class="profile">
+      Energetic student specializing in <b>electronics, programming, and AI</b>. Adept at building <b>robotics and IoT projects</b> using C++, Python, and Arduino. I love learning, creative coding, collaborative challenges, and applying knowledge in real-world environments.
+    </div>
+
+    <div class="section">
+      <h3>Education</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="degree">B.Tech in Electronics Engineering</span> at XYZ Institute of Tech<br>
+            <span class="year">2023–2027</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="degree">Higher Secondary (Science PCM)</span> at ABC School<br>
+            <span class="year">2021–2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Technical Skills</h3>
+      <div class="skills-wrapper">
+        <div class="skill-chip">
+          C++ 
+          <div class="skill-level"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Python 
+          <div class="skill-level"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Arduino
+          <div class="skill-level"><span style="width:85%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Robotics
+          <div class="skill-level"><span style="width:80%"></span></div>
+        </div>
+        <div class="skill-chip">
+          IoT
+          <div class="skill-level"><span style="width:80%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Java
+          <div class="skill-level"><span style="width:60%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Quantum Computing (Basic)
+          <div class="skill-level"><span style="width:50%"></span></div>
+        </div>
+        <div class="skill-chip">
+          VS Code
+          <div class="skill-level"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Proteus & Fritzing
+          <div class="skill-level"><span style="width:80%"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Projects</h3>
+      <div class="projects-grid">
+        <div class="project-card">
+          <b>Smart Waste Management System</b>
+          <span class="project-type">IoT</span>
+          <div>
+            Developed real-time waste bins with sensors and cloud integration for automated sorting and reporting.
+          </div>
+        </div>
+        <div class="project-card">
+          <b>Line Follower Robot</b>
+          <span class="project-type">Robotics</span>
+          <div>
+            Programmed Arduino-based robot for autonomous line navigation using sensor arrays.
+          </div>
+        </div>
+        <div class="project-card">
+          <b>Quantum Cryptography Demo</b>
+          <span class="project-type">AI / Python</span>
+          <div>
+            Simulated quantum key distribution protocols and encryption methods using Python.
+          </div>
+        </div>
+        <div class="project-card">
+          <b>IoT-Driven Air Quality Monitor</b>
+          <span class="project-type">IoT</span>
+          <div>
+            Compact system for environmental measurements; reports live sensor data over Wi-Fi.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Certifications & Workshops</h3>
+      <div class="certs-row">
+        <span class="certificate">AI & Sensors Workshop (2025)</span>
+        <span class="certificate">Arduino Robotics Bootcamp (2024)</span>
+        <span class="certificate">Quantum Computing Seminar (2024)</span>
+        <span class="certificate">Line Follower Challenge Winner (2024)</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Extracurricular & Achievements</h3>
+      <ul class="activities-list">
+        <li class="activity">YouTube Tutorials (Engineering/Coding)</li>
+        <li class="activity">College Hackathon Finalist – Robotics</li>
+        <li class="activity">Member, Coding Society</li>
+        <li class="activity">Technical Blogger</li>
+        <li class="activity">Open-source Hardware Contributor</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Languages</h3>
+      <div class="skills-wrapper">
+        <div class="skill-chip">
+          English (Fluent)
+          <div class="skill-level"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill-chip">
+          Hindi (Native)
+          <div class="skill-level"><span style="width:99%"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Your Name | Last updated: Nov 14, 2025 | Made with <span style="color:#fbc02d;">&#10084;</span> and CSS
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
