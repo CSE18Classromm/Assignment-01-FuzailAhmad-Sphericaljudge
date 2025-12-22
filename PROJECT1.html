@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolls-Royce Motor Cars | Inspiring Greatness</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS RESET & VARIABLES */
+        :root {
+            --rr-black: #050505;
+            --rr-silver: #a8a8a8;
+            --rr-white: #ffffff;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--rr-black);
+            color: var(--rr-white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 20px 60px;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            letter-spacing: 6px;
+            font-weight: 400;
+            cursor: default;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--rr-white);
+            text-decoration: none;
+            margin: 0 25px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--rr-silver);
+        }
+
+        /* --- HERO SECTION CHANGES HERE --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* UPDATED BACKGROUND:
+               1. Added a slightly darker gradient overlay to ensure text is readable over any image.
+               2. Changed the URL to point to your local 'download.jpeg' file.
+            */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('download.jpeg');
+            /* Ensures the image covers the whole area without distorting */
+            background-size: cover;
+            /* Centers the image */
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            /* Added a slight fade-up animation on load */
+            animation: fadeUp 1.5s ease-out;
+        }
+
+        /* Animation definition */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: 200;
+        }
+
+        /* BUTTONS */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-white {
+            background: var(--rr-white);
+            color: var(--rr-black);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--rr-white);
+            color: var(--rr-white);
+            backdrop-filter: blur(5px); /* Adds a premium frosted glass effect */
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px rgba(255,255,255,0.5);
+        }
+
+        /* MODELS GRID */
+        .section-padding {
+            padding: 120px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 80px;
+            font-weight: 400;
+            letter-spacing: 5px;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .model-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0; /* Hidden initially for scroll reveal */
+            transform: translateY(30px);
+        }
+
+        .model-card img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            filter: grayscale(30%) brightness(0.8);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+        }
+
+        .model-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .model-info {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .model-info h3 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 4px;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--rr-silver);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            header { padding: 20px 30px; }
+            nav { display: none; }
+            .section-padding { padding: 60px 20px; }
+            .hero-content h1 { letter-spacing: 5px; font-size: 3rem; }
+            .hero-content p { letter-spacing: 2px; font-size: 0.9rem; }
+            .cta-group { flex-direction: column; gap: 10px; }
+            .btn { width: 100%; text-align: center; padding: 15px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-nav">
+        <div class="logo">ROLLS-ROYCE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Models</a></li>
+                <li><a href="#">Bespoke</a></li>
+                <li><a href="#">Muse</a></li>
+                <li><a href="#">Boutique</a></li>
+            </ul>
+        </nav>
+        <div style="font-size: 0.7rem; letter-spacing: 2px;">EN-GB</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p>A New Era Begins</p>
+            <h1>SPECTRE</h1>
+            <div class="cta-group">
+                <a href="#" class="btn btn-white">Discover</a>
+                <a href="#" class="btn btn-outline">Commission</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <h2 class="section-title">THE FAMILY</h2>
+        <div class="model-grid">
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800" alt="Rolls-Royce Ghost">
+                <div class="model-info">
+                    <h3>GHOST</h3>
+                </div>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1589133405788-9d4133488801?auto=format&fit=crop&q=80&w=800" alt="Rolls-Royce Cullinan">
+                <div class="model-info">
+                    <h3>CULLINAN</h3>
+                </div>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800" alt="Rolls-Royce Phantom">
+                <div class="model-info">
+                    <h3>PHANTOM</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 ROLLS-ROYCE MOTOR CARS LIMITED. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // 1. Header Scroll Effect
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Reveal Animations on Scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                    // Stop observing once revealed to improve performance
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply observer to cards
+        document.querySelectorAll('.model-card').forEach(card => {
+            revealObserver.observe(card);
+        });
+
+        // 3. Smooth Hover Interactions for Logo
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseover', () => {
+            logo.style.letterSpacing = '10px';
+            logo.style.transition = 'letter-spacing 0.8s ease';
+        });
+        logo.addEventListener('mouseout', () => {
+            logo.style.letterSpacing = '6px';
+        });
+    </script>
+</body>
+</html>
